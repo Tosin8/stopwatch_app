@@ -55,6 +55,33 @@ class _StopwatchState extends State<Stopwatch> {
 
   // creating the start timer function
 
+  void start() {
+    started = true;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      int localSeconds = seconds + 1;
+      int localMinutes = minutes;
+      int localHours = hours;
+
+      if (localSeconds > 59) {
+        if (localMinutes > 59) {
+          localHours++;
+          localMinutes = 0;
+        } else {
+          localMinutes++;
+          localSeconds = 0;
+        }
+      }
+      setState(() {
+        seconds = localSeconds;
+        minutes = localMinutes;
+        hours = localHours;
+        digitSeconds = (seconds >= 10) ? '$seconds' : '0$seconds';
+        digitHours = (hours >= 10) ? '$hours' : '0$hours';
+        digitMinutes = (minutes >= 10) ? '$minutes' : '0$minutes';
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +115,10 @@ class _StopwatchState extends State<Stopwatch> {
                       decoration: BoxDecoration(
                         color: const Color(0xFF323F68),
                         borderRadius: BorderRadius.circular(8.0),
-                      )),
+                      ), 
+                      // adding a list builder
+                      child: ,
+                      ),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
