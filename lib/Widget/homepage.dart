@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Stopwatch extends StatefulWidget {
@@ -8,6 +10,13 @@ class Stopwatch extends StatefulWidget {
 }
 
 class _StopwatchState extends State<Stopwatch> {
+// creating the business logic of the app
+
+  int seconds = 0, minutes = 0, hours = 0;
+  String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
+  Timer? timer;
+  bool started = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +36,15 @@ class _StopwatchState extends State<Stopwatch> {
                             fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 20.0),
+                  const Center(
+                    child: Text(
+                      "00:00:00",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 82.0,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
                   Container(
                       height: 400.0,
                       decoration: BoxDecoration(
@@ -40,18 +58,24 @@ class _StopwatchState extends State<Stopwatch> {
                       Expanded(
                           child: RawMaterialButton(
                               onPressed: () {},
-                              fillColor: Colors.blue,
-                              shape: const StadiumBorder(),
+                              shape: const StadiumBorder(
+                                  side: BorderSide(color: Colors.blue)),
                               child: const Text(
                                 'Start',
                                 style: TextStyle(color: Colors.white),
                               ))),
+                      const SizedBox(width: 8.0),
+                      IconButton(
+                        color: Colors.white,
+                        onPressed: () {},
+                        icon: const Icon(Icons.flag),
+                      ),
+                      const SizedBox(width: 8.0),
                       Expanded(
                           child: RawMaterialButton(
                               onPressed: () {},
-                              shape: const StadiumBorder(
-                                side: BorderSide(color: Colors.blue),
-                              ),
+                              fillColor: Colors.blue,
+                              shape: const StadiumBorder(),
                               child: const Text(
                                 'Reset',
                                 style: TextStyle(color: Colors.white),
