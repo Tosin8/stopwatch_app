@@ -27,6 +27,19 @@ class _StopwatchState extends State<Stopwatch> {
     });
   }
 
+  // creating the reset function
+
+  void reset() {
+    timer!.cancel();
+    setState(
+      () {
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
