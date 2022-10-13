@@ -101,10 +101,10 @@ class _StopwatchState extends State<Stopwatch> {
                             fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 20.0),
-                  const Center(
+                  Center(
                     child: Text(
-                      "00:00:00",
-                      style: TextStyle(
+                      "$digitHours:$digitMinutes:$digitSeconds",
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 82.0,
                           fontWeight: FontWeight.w600),
@@ -131,8 +131,8 @@ class _StopwatchState extends State<Stopwatch> {
                                         color: Colors.white,
                                         fontSize: 16.0,
                                       )),
-                                  const Text('laps[index]}',
-                                      style: TextStyle(
+                                  Text('${laps[index]}',
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 16.0,
                                       )),
@@ -158,13 +158,17 @@ class _StopwatchState extends State<Stopwatch> {
                       const SizedBox(width: 8.0),
                       IconButton(
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          addLaps();
+                        },
                         icon: const Icon(Icons.flag),
                       ),
                       const SizedBox(width: 8.0),
                       Expanded(
                           child: RawMaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                reset();
+                              },
                               fillColor: Colors.blue,
                               shape: const StadiumBorder(),
                               child: const Text(
