@@ -115,22 +115,45 @@ class _StopwatchState extends State<Stopwatch> {
                       decoration: BoxDecoration(
                         color: const Color(0xFF323F68),
                         borderRadius: BorderRadius.circular(8.0),
-                      ), 
-                      // adding a list builder
-                      child: ,
                       ),
+                      // adding a list builder
+                      child: ListView.builder(
+                          itemCount: laps.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Lap n ${index + 1}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                      )),
+                                  const Text('laps[index]}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                      )),
+                                ],
+                              ),
+                            );
+                          })),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                           child: RawMaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                (!started) ? start() : stop();
+                              },
                               shape: const StadiumBorder(
                                   side: BorderSide(color: Colors.blue)),
-                              child: const Text(
-                                'Start',
-                                style: TextStyle(color: Colors.white),
+                              child: Text(
+                                (!started) ? 'Start' : 'Pause',
+                                style: const TextStyle(color: Colors.white),
                               ))),
                       const SizedBox(width: 8.0),
                       IconButton(
