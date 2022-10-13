@@ -36,9 +36,24 @@ class _StopwatchState extends State<Stopwatch> {
         seconds = 0;
         minutes = 0;
         hours = 0;
+
+        digitSeconds = '00';
+        digitMinutes = '00';
+        digitHours = '00';
+
+        started = false;
       },
     );
   }
+
+  void addLaps() {
+    String lap = '$digitHours: $digitMinutes: $digitSeconds';
+    setState(() {
+      laps.add(lap);
+    });
+  }
+
+  // creating the start timer function
 
   @override
   Widget build(BuildContext context) {
