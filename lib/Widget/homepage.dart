@@ -16,6 +16,16 @@ class _StopwatchState extends State<Stopwatch> {
   String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
   Timer? timer;
   bool started = false;
+  List laps = [];
+
+  // creating the stop timer function
+
+  void stop() {
+    timer!.cancel();
+    setState(() {
+      started = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
